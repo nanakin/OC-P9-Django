@@ -19,5 +19,5 @@ import users.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("login/", users.views.login_page, name="login")
+    path("login/", users.views.login_page, name="login"),
 ]

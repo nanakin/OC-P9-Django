@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <p>page de login</p>
+    {{ message }}
     <form method="post">
         {{ form.as_p }}
         {% csrf_token %}
