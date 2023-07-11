@@ -3,5 +3,8 @@
 <p>home page</p>
 {% if user.is_authenticated %}
     hello {{ request.user }}
+    <a href="{% url 'logout' %}">se déconnecter</a>
+{% else %}
+   <a href="{% url 'login' %}">s’authentifier</a>
 {% endif %}
 {% endblock content %}

@@ -124,4 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # URL destination after a successful authentication
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "home"
+# URL destination after logout
+LOGOUT_REDIRECT_URL = "home"
+# URL used when accessing to a login required page
+LOGIN_URL = "login"

@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
     <p>page de login</p>
-    {{ message }}
+    {% if form.errors %}
+        <p>Identifiants invalides.</p>
+    {% endif %}
     <form method="post">
         {{ form.as_p }}
         {% csrf_token %}

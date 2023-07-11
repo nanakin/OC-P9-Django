@@ -21,5 +21,6 @@ import reviews.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("login/", users.views.login_page, name="login"),
+    path("logout/", users.views.logout_user, name="logout"),
     path("", reviews.views.home, name="home")
 ]
