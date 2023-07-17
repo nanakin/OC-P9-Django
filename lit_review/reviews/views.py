@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 
-def home(request):
-    return render(request, "reviews/home.html")
+@login_required()
+def stream_page(request):
+    return render(request, "reviews/stream.html")

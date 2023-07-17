@@ -23,5 +23,6 @@ urlpatterns = [
     path("login/", users.views.login_page, name="login"),
     path("signup/", users.views.signup_page, name="signup"),
     path("logout/", users.views.logout_user, name="logout"),
-    path("", reviews.views.home, name="home")
+    path("authenticate/", users.views.authenticate_page, name="authenticate"),
+    path("", reviews.views.stream_page, name="stream")
 ]
