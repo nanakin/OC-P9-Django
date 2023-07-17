@@ -3,4 +3,9 @@
 <p>Récentes activités</p>
 billet 1
 critique 1 ...
+<ul>
+{% for post in posts %}
+    <li>{{post.title}}</li>
+{% endfor %}
+</ul>
 {% endblock content %}
