@@ -71,6 +71,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lit_review.wsgi.application'
 
+# Media
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
