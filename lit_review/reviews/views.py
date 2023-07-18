@@ -2,17 +2,26 @@ from django.shortcuts import render
 from django.db.models import CharField, Value
 from django.contrib.auth.decorators import login_required
 from itertools import chain
-from .models import Ticket, Review
+from .models import Ticket, Review, UserFollows
 from django.db.models import Q
 
 
-def get_users_viewable_tickets(username):
-    tickets = Ticket.objects.filter(user=username)
+def get_followed_users(user):
+    return UserFollows.objects.filter(user=user).values_list("followed_user")
+
+
+def get_users_viewable_tickets(user):
+    tickets = Ticket.objects.filter(
+        Q(user=user) |
+        Q(user__in=get_followed_users(user)))
     return tickets
 
 
-def get_users_viewable_reviews(username):
-    reviews = Review.objects.filter(Q(user=username) | Q(ticket__in=Ticket.objects.filter(user=username)))
+def get_users_viewable_reviews(user):
+    reviews = Review.objects.filter(
+        Q(user=user) |
+        Q(user__in=get_followed_users(user)) |
+        Q(ticket__in=Ticket.objects.filter(user=user)))
     return reviews
 
 
