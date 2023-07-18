@@ -10,7 +10,9 @@ critique 1 ...
     <div style="border:1px solid">
         {{post.title}}<br>
         {{post.description}}<br>
+        {% if post.image %}
         <img src="{{post.image.url}}" width="100px" alt="{{post.title}}"><br>
+        {% endif %}
         par : {{post.user}} <br>
         posté le : {{post.time_created}}
     </div>

@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import CharField, Value
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 from .models import Ticket, Review, UserFollows
+from .forms import TicketForm
 from django.db.models import Q
 
 
@@ -33,3 +34,16 @@ def stream_page(request):
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
     return render(request, "reviews/stream.html", context={'posts': posts})
+
+
+@login_required()
+def add_ticket_page(request):
+    form = TicketForm()
+    if request.method == "POST":
+        form = TicketForm(request.POST, request.FILES)
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+            return redirect('stream')
+    return render(request, "reviews/add_ticket.html", context={"form": form})
