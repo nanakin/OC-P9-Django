@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.db.models import CharField, Value
 from django.contrib.auth.decorators import login_required
-from .models import Ticket
+from itertools import chain
+from .models import Ticket, Review
 
 
 def get_users_viewable_tickets(username):
@@ -9,9 +10,16 @@ def get_users_viewable_tickets(username):
     return tickets
 
 
+def get_users_viewable_reviews(username):
+    reviews = Review.objects.filter(user=username)
+    return reviews
+
+
 @login_required()
 def stream_page(request):
     tickets = get_users_viewable_tickets(request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-    posts = sorted(tickets, key=lambda post: post.time_created, reverse=True)
+    reviews = get_users_viewable_reviews(request.user)
+    reviews = reviews.annotate(content_type=Value('TICKET', CharField()))
+    posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
     return render(request, "reviews/stream.html", context={'posts': posts})

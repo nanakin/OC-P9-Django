@@ -1,11 +1,30 @@
 {% extends "base.html" %}
+{% load review_extras %}
 {% block content %}
 <p>Récentes activités</p>
 billet 1
 critique 1 ...
-<ul>
+<div>
 {% for post in posts %}
-    <li>{{post.title}}</li>
+    {% if post|object_type == "Ticket" %}
+    <div style="border:1px solid">
+        {{post.title}}<br>
+        {{post.description}}<br>
+        <img src="{{post.image.url}}" width="100px" alt="{{post.title}}"><br>
+        par : {{post.user}} <br>
+        posté le : {{post.time_created}}
+    </div>
+    {% endif %}
+    {% if post|object_type == "Review" %}
+    <div style="border: 1px solid">
+        ticket : {{post.ticket}}<br>
+        {{post.headline}}<br>
+        {{post.body}}<br>
+        note : {{post.rating}}<br>
+        par : {{post.user}} <br>
+        posté le : {{post.time_created}}
+    </div>
+    {% endif %}
 {% endfor %}
-</ul>
+</div>
 {% endblock content %}
