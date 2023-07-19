@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from . import forms
 
 
@@ -18,7 +19,8 @@ def login_page(request):
             if user is not None:
                 login(request, user)
                 return redirect(settings.LOGIN_REDIRECT_URL)
-
+            else:
+                messages.error(request, "identifiants incorrects")
     return render(request, "users/login.html", context={"form": form})
 
 
@@ -30,8 +32,6 @@ def signup_page(request):
             user = form.save()
             login(request, user)
             return redirect(settings.LOGIN_REDIRECT_URL)
-        else:
-            print("invalid form")
     return render(request, "users/signup.html", context={"form": form})
 
 
