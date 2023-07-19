@@ -28,12 +28,22 @@ def get_users_viewable_reviews(user):
         Q(ticket__in=get_users_tickets(user)))
 
 
+def get_users_reviews(user):
+    return user.review_set.all()
+
+
+@login_required()
+def my_activity_page(request):
+    tickets = get_users_tickets(request.user)
+    reviews = get_users_reviews(request.user)
+    posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
+    return render(request, "reviews/my_activity.html", context={'posts': posts})
+
+
 @login_required()
 def feed_page(request):
     tickets = get_users_viewable_tickets(request.user)
-    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = get_users_viewable_reviews(request.user)
-    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
     return render(request, "reviews/feed.html", context={'posts': posts})
 

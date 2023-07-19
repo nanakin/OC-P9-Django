@@ -10,6 +10,7 @@
         utilisateur : {{ request.user }}
         <ul>
             <li><a href="{% url 'feed' %}">Fil d'activités</a></li>
+            <li><a href="{% url 'my-activity' %}">Mon activité</a></li>
             <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
             <li><a href="{% url 'add-ticket' %}">Ajouter un ticket</a></li>
         </ul>

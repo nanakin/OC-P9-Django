@@ -1,0 +1,29 @@
+{% load review_extras %}
+<div>
+{% for post in posts %}
+    {% if post|object_type == "Ticket" %}
+    <div style="border:1px solid">
+        {{post.title}}
+        {% if post.user == request.user %}
+        <a href="{% url 'edit-ticket' post.id %}">edit</a>
+        {% endif %}<br>
+        {{post.description}}<br>
+        {% if post.image %}
+        <img src="{{post.image.url}}" width="100px" alt="{{post.title}}"><br>
+        {% endif %}
+        par : {{post.user}} <br>
+        posté le : {{post.time_created}}
+    </div>
+    {% endif %}
+    {% if post|object_type == "Review" %}
+    <div style="border: 1px solid">
+        ticket : {{post.ticket}}<br>
+        {{post.headline}}<br>
+        {{post.body}}<br>
+        note : {{post.rating}}<br>
+        par : {{post.user}} <br>
+        posté le : {{post.time_created}}
+    </div>
+    {% endif %}
+{% endfor %}
+</div>
