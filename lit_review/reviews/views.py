@@ -29,13 +29,13 @@ def get_users_viewable_reviews(user):
 
 
 @login_required()
-def stream_page(request):
+def feed_page(request):
     tickets = get_users_viewable_tickets(request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = get_users_viewable_reviews(request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
-    return render(request, "reviews/stream.html", context={'posts': posts})
+    return render(request, "reviews/feed.html", context={'posts': posts})
 
 
 @login_required()
@@ -47,7 +47,7 @@ def add_ticket_page(request):
             ticket = form.save(commit=False)
             ticket.user = request.user
             ticket.save()
-            return redirect('stream')
+            return redirect('feed')
     return render(request, "reviews/add_ticket.html", context={"form": form})
 
 
@@ -55,7 +55,7 @@ def add_ticket_page(request):
 def edit_ticket_page(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if ticket not in get_users_tickets(request.user):
-        return redirect("stream")
+        return redirect("feed")
     edit_form = EditTicketForm(instance=ticket)
     delete_form = DeleteTicketForm(instance=ticket)
     if request.method == "POST":
@@ -67,6 +67,6 @@ def edit_ticket_page(request, ticket_id):
             delete_form = DeleteTicketForm(request.POST, instance=ticket)
             if delete_form.is_valid():
                 ticket.delete()
-        return redirect('stream')
+        return redirect('feed')
     return render(request, "reviews/edit_ticket.html",
                   context={"edit_form": edit_form, "delete_form": delete_form})

@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load review_extras %}
 {% block content %}
-<p>Récentes activités</p>
-billet 1
-critique 1 ...
+<p>Activités récentes</p>
 <div>
 {% for post in posts %}
     {% if post|object_type == "Ticket" %}

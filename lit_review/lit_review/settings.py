@@ -128,8 +128,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # URL destination after a successful authentication
-LOGIN_REDIRECT_URL = "stream"
+LOGIN_REDIRECT_URL = "feed"
 # URL destination after logout
-LOGOUT_REDIRECT_URL = "stream"
+LOGOUT_REDIRECT_URL = "feed"
 # URL used when accessing to a login required page
 LOGIN_URL = "authenticate"

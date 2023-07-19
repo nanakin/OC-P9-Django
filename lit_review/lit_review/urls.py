@@ -26,7 +26,7 @@ urlpatterns = [
     path("signup/", users.views.signup_page, name="signup"),
     path("logout/", users.views.logout_user, name="logout"),
     path("authenticate/", users.views.authenticate_page, name="authenticate"),
-    path("", reviews.views.stream_page, name="stream"),
+    path("", reviews.views.feed_page, name="feed"),
     path("ticket/add", reviews.views.add_ticket_page, name="add-ticket"),
     path('ticket/edit/<int:ticket_id>/', reviews.views.edit_ticket_page, name='edit-ticket')
 ]
