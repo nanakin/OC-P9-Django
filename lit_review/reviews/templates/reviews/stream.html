@@ -8,7 +8,10 @@ critique 1 ...
 {% for post in posts %}
     {% if post|object_type == "Ticket" %}
     <div style="border:1px solid">
-        {{post.title}}<br>
+        {{post.title}}
+        {% if post.user == request.user %}
+        <a href="{% url 'edit-ticket' post.id %}">edit</a>
+        {% endif %}<br>
         {{post.description}}<br>
         {% if post.image %}
         <img src="{{post.image.url}}" width="100px" alt="{{post.title}}"><br>

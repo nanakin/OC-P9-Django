@@ -1,29 +1,31 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import CharField, Value
 from django.contrib.auth.decorators import login_required
 from itertools import chain
-from .models import Ticket, Review, UserFollows
-from .forms import TicketForm
+from .models import Ticket, Review
+from .forms import TicketForm, EditTicketForm, DeleteTicketForm
 from django.db.models import Q
 
 
 def get_followed_users(user):
-    return UserFollows.objects.filter(user=user).values_list("followed_user")
+    return user.following.all().values_list("followed_user")
 
 
 def get_users_viewable_tickets(user):
-    tickets = Ticket.objects.filter(
+    return Ticket.objects.filter(
         Q(user=user) |
         Q(user__in=get_followed_users(user)))
-    return tickets
+
+
+def get_users_tickets(user):
+    return user.ticket_set.all()
 
 
 def get_users_viewable_reviews(user):
-    reviews = Review.objects.filter(
+    return Review.objects.filter(
         Q(user=user) |
         Q(user__in=get_followed_users(user)) |
-        Q(ticket__in=Ticket.objects.filter(user=user)))
-    return reviews
+        Q(ticket__in=get_users_tickets(user)))
 
 
 @login_required()
@@ -47,3 +49,24 @@ def add_ticket_page(request):
             ticket.save()
             return redirect('stream')
     return render(request, "reviews/add_ticket.html", context={"form": form})
+
+
+@login_required()
+def edit_ticket_page(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+    if ticket not in get_users_tickets(request.user):
+        return redirect("stream")
+    edit_form = EditTicketForm(instance=ticket)
+    delete_form = DeleteTicketForm(instance=ticket)
+    if request.method == "POST":
+        if "edit_ticket" in request.POST:
+            edit_form = EditTicketForm(request.POST, instance=ticket)
+            if edit_form.is_valid():
+                edit_form.save()
+        elif "delete_ticket" in request.POST:
+            delete_form = DeleteTicketForm(request.POST, instance=ticket)
+            if delete_form.is_valid():
+                ticket.delete()
+        return redirect('stream')
+    return render(request, "reviews/edit_ticket.html",
+                  context={"edit_form": edit_form, "delete_form": delete_form})
