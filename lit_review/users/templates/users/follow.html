@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>Followers</p>
+    <div>
+    <form method="post">
+        {{ search_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Suivre</button>
+    </form>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        Utilisateurs suivis
+        {% for obj in followed %}
+            {{ obj.followed_user.username }}
+            <button type="submit" name="unfollow" value="{{obj.id}}">Se désabonner</button>
+        {% endfor %}
+    </form>
+    <br>
+    Vos followers
+    {% for user in following_by %}
+        {{ user.user.username }}
+    {% endfor %}
+{% endblock content %}

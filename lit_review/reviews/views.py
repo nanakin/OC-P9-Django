@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import CharField, Value
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 from .models import Ticket, Review

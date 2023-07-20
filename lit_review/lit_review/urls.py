@@ -29,7 +29,8 @@ urlpatterns = [
     path("", reviews.views.feed_page, name="feed"),
     path("ticket/myactivity/", reviews.views.my_activity_page, name="my-activity"),
     path("ticket/add", reviews.views.add_ticket_page, name="add-ticket"),
-    path('ticket/edit/<int:ticket_id>/', reviews.views.edit_ticket_page, name='edit-ticket')
+    path('ticket/edit/<int:ticket_id>/', reviews.views.edit_ticket_page, name='edit-ticket'),
+    path("follow/", users.views.follow_page, name="follow"),
 ]
 
 if settings.DEBUG:

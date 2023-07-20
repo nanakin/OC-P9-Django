@@ -19,3 +19,9 @@ class UserFollows(models.Model):  # name and inheritance fixed by OC, content su
         # ensures we don't get multiple UserFollows instances
         # for unique user-user_followed pairs
         unique_together = ('user', 'followed_user', )  # fixed by OC
+
+    def __str__(self):
+        return f"{self.user} > {self.followed_user}"
+
+    def __repr__(self):
+        return f"{self.user} > {self.followed_user}"
