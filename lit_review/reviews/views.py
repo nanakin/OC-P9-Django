@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 from .models import Ticket, Review
-from .forms import TicketForm, EditTicketForm, DeleteTicketForm, ReviewForm
+from .forms import TicketForm, EditTicketForm, DeleteTicketForm, ReviewForm, EditReviewForm, DeleteReviewForm
 from django.db.models import Q
 
 
@@ -103,3 +103,24 @@ def add_review_page(request, ticket_id):
                 review.save()
                 return redirect('feed')
         return render(request, "reviews/add_review.html", context={"form": form})
+
+
+@login_required()
+def edit_review_page(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    if review not in get_users_reviews(request.user):
+        return redirect("feed")
+    edit_form = EditReviewForm(instance=review)
+    delete_form = DeleteReviewForm(instance=review)
+    if request.method == "POST":
+        if "edit_ticket" in request.POST:
+            edit_form = EditReviewForm(request.POST, instance=review)
+            if edit_form.is_valid():
+                edit_form.save()
+        elif "delete_ticket" in request.POST:
+            delete_form = DeleteReviewForm(request.POST, instance=review)
+            if delete_form.is_valid():
+                review.delete()
+        return redirect('feed')
+    return render(request, "reviews/edit_review.html",
+                  context={"edit_form": edit_form, "delete_form": delete_form})

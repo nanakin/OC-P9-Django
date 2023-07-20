@@ -23,3 +23,14 @@ class ReviewForm(ModelForm):
     class Meta:
         model = Review
         fields = ["headline", "rating", "body"]
+
+
+class EditReviewForm(ReviewForm):
+    edit_ticket = BooleanField(widget=HiddenInput, initial=True)
+
+
+class DeleteReviewForm(ReviewForm):
+    delete_ticket = BooleanField(widget=HiddenInput, initial=True)
+
+    class Meta(ReviewForm.Meta):
+        fields = []

@@ -29,6 +29,7 @@ urlpatterns = [
     path("", reviews.views.feed_page, name="feed"),
     path("myactivity/", reviews.views.my_activity_page, name="my-activity"),
     path("review/add/<int:ticket_id>/", reviews.views.add_review_page, name='add-review'),
+    path("review/edit/<int:review_id>/", reviews.views.edit_review_page, name='edit-review'),
     path("ticket/add", reviews.views.add_ticket_page, name="add-ticket"),
     path('ticket/edit/<int:ticket_id>/', reviews.views.edit_ticket_page, name='edit-ticket'),
     path("follow/", users.views.follow_page, name="follow"),

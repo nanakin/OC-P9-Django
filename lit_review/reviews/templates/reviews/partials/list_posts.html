@@ -21,6 +21,9 @@
     {% if post|object_type == "Review" %}
     <div style="border: 1px solid">
         ticket : {{post.ticket}}<br>
+        {% if post.user == request.user %}
+        <a href="{% url 'edit-review' post.id %}">modifier la critique</a>
+        {% endif %}<br>
         {{post.headline}}<br>
         {{post.body}}<br>
         note : {{post.rating}}<br>
