@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 from .models import Ticket, Review
-from .forms import TicketForm, EditTicketForm, DeleteTicketForm
+from .forms import TicketForm, EditTicketForm, DeleteTicketForm, ReviewForm
 from django.db.models import Q
 
 
@@ -17,7 +17,7 @@ def get_users_viewable_tickets(user):
 
 
 def get_users_tickets(user):
-    return user.ticket_set.all()
+    return user.tickets.all()
 
 
 def get_users_viewable_reviews(user):
@@ -28,7 +28,11 @@ def get_users_viewable_reviews(user):
 
 
 def get_users_reviews(user):
-    return user.review_set.all()
+    return user.reviews.all()
+
+
+def get_users_answerable_tickets(user):
+    return Ticket.objects.filter(~Q(id__in=user.reviews.values_list("ticket")))
 
 
 @login_required()
@@ -43,8 +47,10 @@ def my_activity_page(request):
 def feed_page(request):
     tickets = get_users_viewable_tickets(request.user)
     reviews = get_users_viewable_reviews(request.user)
+    answerable = get_users_answerable_tickets(request.user)
+    print(f"{answerable=}")
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
-    return render(request, "reviews/feed.html", context={'posts': posts})
+    return render(request, "reviews/feed.html", context={'posts': posts, 'answerable': answerable})
 
 
 @login_required()
@@ -79,3 +85,21 @@ def edit_ticket_page(request, ticket_id):
         return redirect('feed')
     return render(request, "reviews/edit_ticket.html",
                   context={"edit_form": edit_form, "delete_form": delete_form})
+
+
+@login_required()
+def add_review_page(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+    if ticket not in get_users_answerable_tickets(request.user):
+        redirect("feed")
+    else:
+        form = ReviewForm()
+        if request.method == "POST":
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.user = request.user
+                review.ticket = ticket
+                review.save()
+                return redirect('feed')
+        return render(request, "reviews/add_review.html", context={"form": form})

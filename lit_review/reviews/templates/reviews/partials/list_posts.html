@@ -5,7 +5,10 @@
     <div style="border:1px solid">
         {{post.title}}
         {% if post.user == request.user %}
-        <a href="{% url 'edit-ticket' post.id %}">edit</a>
+        <a href="{% url 'edit-ticket' post.id %}">modifier le ticket</a>
+        {% endif %}<br>
+        {% if post in answerable %}
+        <a href="{% url 'add-review' post.id %}">créer une critique</a>
         {% endif %}<br>
         {{post.description}}<br>
         {% if post.image %}

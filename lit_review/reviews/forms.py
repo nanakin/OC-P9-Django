@@ -1,5 +1,5 @@
 from django.forms import ModelForm, BooleanField, HiddenInput
-from .models import Ticket
+from .models import Ticket, Review
 
 
 class TicketForm(ModelForm):
@@ -17,3 +17,9 @@ class DeleteTicketForm(TicketForm):
 
     class Meta(TicketForm.Meta):
         fields = []
+
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ["headline", "rating", "body"]
