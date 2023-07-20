@@ -124,3 +124,23 @@ def edit_review_page(request, review_id):
         return redirect('feed')
     return render(request, "reviews/edit_review.html",
                   context={"edit_form": edit_form, "delete_form": delete_form})
+
+
+@login_required()
+def add_ticket_and_review_page(request):
+    review_form = ReviewForm()
+    ticket_form = TicketForm()
+    if request.method == "POST":
+        review_form = ReviewForm(request.POST)
+        ticket_form = TicketForm(request.POST, request.FILES)
+        if all([review_form.is_valid(), ticket_form.is_valid()]):
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect('feed')
+    return render(request, "reviews/add_ticket_and_review.html",
+                  context={"ticket_form": ticket_form, "review_form": review_form})
