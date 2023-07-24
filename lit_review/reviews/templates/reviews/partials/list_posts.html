@@ -3,10 +3,10 @@
     {% if post|object_type == "Ticket" %}
     <div class="post ticket">
         <div class="header">
-            <span class="by"><strong>{{post.user|capfirst}}</strong> a demandé une critique</span>
+            <span class="by"><strong>{{post.user}}</strong> a posté un billet</span>
             <span class="time">le : {{post.time_created}}</span>
         </div>
-        <h4>{{post.title}}</h4>
+        <h3>{{post.title}}</h3>
         <p>
             {{post.description}}
             {% if post.image %}
@@ -28,10 +28,10 @@
     {% if post|object_type == "Review" %}
     <div class="post review">
         <div class="header">
-            <span class="by"><strong>{{post.user|capfirst}}</strong> a posté une critique</span>
+            <span class="by"><strong>{{post.user}}</strong> a posté une critique</span>
             <span class="time">le : {{post.time_created}}</span>
         </div>
-        <h4>{{post.headline}}</h4><span class="stars">{{post.rating|stars}}</span>
+        <h3>{{post.headline}}</h3><span class="stars">{{post.rating|stars}}</span>
         <div class="ref">{{post.ticket}}</div>
         <p>{{post.body}}</p>
         {% if post.user == request.user %}

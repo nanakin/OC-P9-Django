@@ -6,18 +6,18 @@
         Bonjour {{ request.user }}.
         <a href="{% url 'logout' %}">se déconnecter</a>
     {% else %}
-        <div>
+        <section>
             Connectez-vous
             <form method="post">
                 {{ form.as_p }}
                 {% csrf_token %}
                 <button type="submit" >Se connecter</button>
             </form>
-        </div>
-        <div>
-            Inscrivez-vous maintenant
-           <a href="{% url 'signup' %}">s’inscrire</a>
-        </div>
+        </section>
+        <section>
+            Inscrivez-vous maintenant<br>
+           <a href="{% url 'signup' %}">S’inscrire</a>
+        </section>
     {% endif %}
 </div>
 {% endblock content %}

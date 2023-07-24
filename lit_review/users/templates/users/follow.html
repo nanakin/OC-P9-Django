@@ -1,29 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Gestion des abonnements</h2>
-<section>
-    <h3>Suivre d'autres utilisateurs</h3>
-    <form method="post">
-        {{ search_form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Suivre</button>
-    </form>
-</section>
-<section>
-    <h3>Vos abonnements</h3>
-    <form method="post">
-        {% csrf_token %}
-        Utilisateurs suivis
-        {% for obj in followed %}
-            {{ obj.followed_user.username }}
-            <button type="submit" name="unfollow" value="{{obj.id}}">Se désabonner</button>
-        {% endfor %}
-    </form>
-</section>
-<section>
-    <h3>Vos abonnés</h3>
-    {% for user in following_by %}
-        {{ user.user.username }}
-    {% endfor %}
-</section>
+<div class="follow" xmlns="http://www.w3.org/1999/html">
+    <section>
+        <h2>Suivre d'autres utilisateurs</h2>
+        <form method="post">
+            {{ search_form}}
+            {% csrf_token %}
+            <button type="submit" >Suivre</button>
+        </form>
+    </section>
+    <section>
+        <h2>Vos abonnements</h2>
+        <form method="post">
+            {% csrf_token %}
+            <ul>
+                {% for obj in followed %}
+                    <li>
+                        {{ obj.followed_user.username }}
+                        <button type="submit" name="unfollow" value="{{obj.id}}">Se désabonner</button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </form>
+    </section>
+    <section>
+        <h2>Vos abonnés</h2>
+        <ul>
+            {% for user in following_by %}
+                <li>{{ user.user.username }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
 {% endblock content %}

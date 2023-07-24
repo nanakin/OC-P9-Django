@@ -5,23 +5,28 @@
         <meta charset="utf-8">
         <title>LitReview</title>
         <link rel="stylesheet" href='{% static "base.css" %}{% now "?u"%}'>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Manrope&family=Playfair+Display&family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
             <div>
-                <h1>LITReview</h1>
-                <img src='{% static "images/litreview.png" %}' alt="logo of LITReview">
+                <div>
+                    <h1>LITReview</h1>
+                    <img src='{% static "images/litreview.png" %}' alt="logo of LITReview">
+                </div>
+                {% if user.is_authenticated %}
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'feed' %}">Flux</a></li>
+                        <li><a href="{% url 'my-activity' %}">Mes posts</a></li>
+                        <li><a href="{% url 'follow' %}">Abonnements</a></li>
+                        <li><a href="{% url 'logout' %}">Se déconnecter ({{ request.user }})</a></li>
+                    </ul>
+                </nav>
+                {% endif %}
             </div>
-            {% if user.is_authenticated %}
-            <nav>
-                <ul>
-                    <li><a href="{% url 'feed' %}">Flux</a></li>
-                    <li><a href="{% url 'my-activity' %}">Mes posts</a></li>
-                    <li><a href="{% url 'follow' %}">Abonnements</a></li>
-                    <li><a href="{% url 'logout' %}">Se déconnecter ({{ request.user }})</a></li>
-                </ul>
-            </nav>
-            {% endif %}
         </header>
         <main>
         {% if messages %}

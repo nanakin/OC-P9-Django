@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Actions</h2>
-<div>
-    <a href="{% url 'add-ticket'%}">Demander une critique</a>
-    <a href="{% url 'add-ticket-and-review'%}">Poster une critique</a>
+<div class="feed">
+    <section>
+        <h2>Actions</h2>
+        <div>
+            <a href="{% url 'add-ticket'%}">Demander une critique</a>
+            <a href="{% url 'add-ticket-and-review'%}">Poster une critique</a>
+        </div>
+    </section>
+    <section>
+        <h2>Activités récentes</h2>
+        {% include "reviews/partials/list_posts.html"%}
+    </section>
 </div>
-<h2>Activités récentes</h2>
-{% include "reviews/partials/list_posts.html"%}
 {% endblock content %}
