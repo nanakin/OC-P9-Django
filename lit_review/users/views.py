@@ -8,10 +8,6 @@ from .models import User, UserFollows
 
 
 def authenticate_page(request):
-    return render(request, "users/authenticate.html")
-
-
-def login_page(request):
     form = LoginForm()
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -23,7 +19,7 @@ def login_page(request):
                 return redirect(settings.LOGIN_REDIRECT_URL)
             else:
                 messages.error(request, "identifiants incorrects")
-    return render(request, "users/login.html", context={"form": form})
+    return render(request, "users/authenticate.html", context={"form": form})
 
 
 def signup_page(request):

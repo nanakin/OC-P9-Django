@@ -1,11 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-<p>home page</p>
-{% if user.is_authenticated %}
-    Bonjour {{ request.user }}.
-    <a href="{% url 'logout' %}">se déconnecter</a>
-{% else %}
-   <a href="{% url 'login' %}">s’authentifier</a>
-   <a href="{% url 'signup' %}">s’inscrire</a>
-{% endif %}
+<h2>Authentification</h2>
+<div class="authentication">
+    {% if user.is_authenticated %}
+        Bonjour {{ request.user }}.
+        <a href="{% url 'logout' %}">se déconnecter</a>
+    {% else %}
+        <div>
+            Connectez-vous
+            <form method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button type="submit" >Se connecter</button>
+            </form>
+        </div>
+        <div>
+            Inscrivez-vous maintenant
+           <a href="{% url 'signup' %}">s’inscrire</a>
+        </div>
+    {% endif %}
+</div>
 {% endblock content %}

@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-    <p>Followers</p>
-    <div>
+<h2>Gestion des abonnements</h2>
+<section>
+    <h3>Suivre d'autres utilisateurs</h3>
     <form method="post">
         {{ search_form.as_p }}
         {% csrf_token %}
         <button type="submit" >Suivre</button>
     </form>
-    </div>
+</section>
+<section>
+    <h3>Vos abonnements</h3>
     <form method="post">
         {% csrf_token %}
         Utilisateurs suivis
@@ -16,9 +19,11 @@
             <button type="submit" name="unfollow" value="{{obj.id}}">Se désabonner</button>
         {% endfor %}
     </form>
-    <br>
-    Vos followers
+</section>
+<section>
+    <h3>Vos abonnés</h3>
     {% for user in following_by %}
         {{ user.user.username }}
     {% endfor %}
+</section>
 {% endblock content %}

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-Nouvelle critique
- <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Créer</button>
- </form>
+<h2>Ajouter une critique</h2>
+<form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit" >Ajouter</button>
+</form>
 {% endblock content %}

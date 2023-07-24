@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<p>Activités récentes</p>
+<h2>Actions</h2>
+<div>
+    <a href="{% url 'add-ticket'%}">Demander une critique</a>
+    <a href="{% url 'add-ticket-and-review'%}">Poster une critique</a>
+</div>
+<h2>Activités récentes</h2>
 {% include "reviews/partials/list_posts.html"%}
 {% endblock content %}

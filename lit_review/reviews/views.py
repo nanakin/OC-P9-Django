@@ -48,7 +48,6 @@ def feed_page(request):
     tickets = get_users_viewable_tickets(request.user)
     reviews = get_users_viewable_reviews(request.user)
     answerable = get_users_answerable_tickets(request.user)
-    print(f"{answerable=}")
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
     return render(request, "reviews/feed.html", context={'posts': posts, 'answerable': answerable})
 

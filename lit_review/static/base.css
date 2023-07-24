@@ -1,0 +1,136 @@
+html {
+    font-family: Arial;
+}
+
+body {
+    background: Gainsboro;
+    margin: 0% 20%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    align-items: center; /* center vertically */
+    text-align: end; /* center horizontally */
+    /* border: 1px solid pink; */
+}
+
+header div {
+    display: inline
+}
+
+h1, header img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header div img {
+    width: 50px;
+    margin: 0% 5%;
+}
+
+nav {
+    /* background: mintcream; */
+    display: inline;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    display : inline;
+    padding: 20px 20px;
+    font-weight: bold;
+}
+
+nav a:visited, nav a:link, nav a:active {
+    color: black;
+}
+
+nav a:hover {
+    color: #fa897c;
+
+}
+
+nothing {
+    background: #fa897c;
+}
+
+main a {
+    border: 1px solid;
+    padding: 10px;
+    background: gray;
+    color: white;
+}
+
+.post {
+    margin: 10px;
+    padding: 20px;
+    display: flow-root;
+}
+
+.ticket {
+    background: mintcream;
+}
+
+.review {
+    background: #f2f2f2;
+}
+
+.post img {
+    width: 100px;
+    margin: 0px 20px 0px 0px; /* top, right, bottom, left*/
+    float: inline-start;
+}
+
+.post .header {
+    margin-bottom: 5px;
+    font-size: small;
+}
+
+.post .time, .post .by {
+    display: inline-block;
+    color: darkgrey;
+}
+
+.post .time {
+  float: right;
+  text-align: right;
+}
+
+.post h4 {
+    display: inline;
+}
+
+.post .stars {
+    margin-left: 20px;
+}
+
+.post .ref {
+    border: 1px solid;
+    margin: 0px 20px;
+}
+
+.post p {
+    margin: 10px 0px 0px 0px;
+}
+
+.post .footer{
+    padding: 10px 0px;
+    text-align: right;
+    clear: both;
+}
+
+.post a {
+    border: 1px solid;
+    padding: 10px;
+    background: gray;
+    color: white;
+}

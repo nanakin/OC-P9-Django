@@ -1,32 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<header>
-    <div>
-        <h1>LITReview</h1>
-        <img src="" alt="logo of ..">
-    </div>
-    {% if user.is_authenticated %}
-    <nav>
-        utilisateur : {{ request.user }}
-        <ul>
-            <li><a href="{% url 'feed' %}">Fil d'activités</a></li>
-            <li><a href="{% url 'my-activity' %}">Mon activité</a></li>
-            <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
-            <li><a href="{% url 'add-ticket' %}">Ajouter un ticket</a></li>
-            <li><a href="{% url 'add-ticket-and-review' %}">Ajouter une critique</a></li>
-            <li><a href="{% url 'follow' %}">Gestion des abonnements</a></li>
+    <head>
+        <meta charset="utf-8">
+        <title>LitReview</title>
+        <link rel="stylesheet" href='{% static "base.css" %}{% now "?u"%}'>
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1>LITReview</h1>
+                <img src='{% static "images/litreview.png" %}' alt="logo of LITReview">
+            </div>
+            {% if user.is_authenticated %}
+            <nav>
+                <ul>
+                    <li><a href="{% url 'feed' %}">Flux</a></li>
+                    <li><a href="{% url 'my-activity' %}">Mes posts</a></li>
+                    <li><a href="{% url 'follow' %}">Abonnements</a></li>
+                    <li><a href="{% url 'logout' %}">Se déconnecter ({{ request.user }})</a></li>
+                </ul>
+            </nav>
+            {% endif %}
+        </header>
+        <main>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
         </ul>
-    </nav>
-    {% endif %}
-</header>
-<body>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-{% block content %}{% endblock content %}
-</body>
+        {% endif %}
+        {% block content %}{% endblock content %}
+        </main>
+    </body>
 </html>

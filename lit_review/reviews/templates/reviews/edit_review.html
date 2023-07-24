@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-Modifier la critique
- <form method="post">
-        {{ edit_form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Sauvegarder</button>
- </form>
- <form method="post">
-        {{ delete_form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Supprimer</button>
- </form>
+<h2>Modifier ou supprimer la critique</h2>
+<form method="post">
+    {{ edit_form.as_p }}
+    {% csrf_token %}
+    <button type="submit" >Sauvegarder</button>
+</form>
+<form method="post">
+    {{ delete_form.as_p }}
+    {% csrf_token %}
+    <button type="submit" >Supprimer</button>
+</form>
 {% endblock content %}
