@@ -74,7 +74,7 @@ def edit_ticket_page(request, ticket_id):
     delete_form = DeleteTicketForm(instance=ticket)
     if request.method == "POST":
         if "edit_ticket" in request.POST:
-            edit_form = EditTicketForm(request.POST, instance=ticket)
+            edit_form = EditTicketForm(request.POST, request.FILES, instance=ticket)
             if edit_form.is_valid():
                 edit_form.save()
         elif "delete_ticket" in request.POST:
