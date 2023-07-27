@@ -113,6 +113,17 @@ input, textarea {
     margin-left: 10px;
 }
 
+.error {
+    color : red;
+}
+
+.helptext, .signup li {
+    font-size : small;
+    display: block;
+    margin-left: 20px;
+    color: #4B4B4B;
+}
+
 
 #id_rating > * {
     display: inline;
@@ -121,7 +132,12 @@ input, textarea {
 .authentication {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    text-align: center;
+    /*text-align: center;*/
+}
+
+.authentication section, .signup  {
+    margin: auto;
+    border: none;
 }
 
 .form h3 {
@@ -184,6 +200,7 @@ input, textarea {
 .follow form {
     padding: 0px 20px;
 }
+
 
 .post {
     margin: 10px;

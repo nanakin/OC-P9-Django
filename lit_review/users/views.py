@@ -18,7 +18,7 @@ def authenticate_page(request):
                 login(request, user)
                 return redirect(settings.LOGIN_REDIRECT_URL)
             else:
-                messages.error(request, "identifiants incorrects")
+                messages.error(request, "Identifiants incorrects");
     return render(request, "users/authenticate.html", context={"form": form})
 
 
@@ -64,10 +64,9 @@ def follow_page(request):
                         given_user and
                         len(request.user.following.filter(followed_user=given_user)) == 0):
                     UserFollows(user=request.user, followed_user=given_user).save()
+                    search_form = FollowForm()
                 else:
-                    print("PAS OK")
-            else:
-                print("Pas OK")
+                    messages.error(request, "Impossible de suivre cet utilisateur.");
     return render(request, "users/follow.html",
                   context=
                   {

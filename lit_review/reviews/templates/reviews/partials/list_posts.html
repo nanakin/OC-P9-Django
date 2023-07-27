@@ -19,7 +19,7 @@
                     <a href="{% url 'edit-ticket' post.id %}">Modifier le ticket</a>
                 {% endif %}
                 {% if post in answerable %}
-                    <a href="{% url 'add-review' post.id %}">Créer une critique</a>
+                    <a href="{% url 'add-review' post.id %}">Poster une critique</a>
                 {% endif %}
             </div>
         {% endif %}
