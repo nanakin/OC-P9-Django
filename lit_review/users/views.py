@@ -60,7 +60,7 @@ def follow_page(request):
             if search_form.is_valid():
                 given_username = search_form.cleaned_data["username"]
                 given_user = User.objects.filter(username=given_username).first()
-                if (given_username != request.user and
+                if (given_user != request.user and
                         given_user and
                         len(request.user.following.filter(followed_user=given_user)) == 0):
                     UserFollows(user=request.user, followed_user=given_user).save()
