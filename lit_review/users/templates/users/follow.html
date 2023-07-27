@@ -3,31 +3,29 @@
 <div class="follow" xmlns="http://www.w3.org/1999/html">
     <section>
         <h2>Suivre d'autres utilisateurs</h2>
-        <form method="post">
-            {{ search_form}}
+        <form method="post" class="search">
             {% csrf_token %}
-            <button type="submit" >Suivre</button>
+            <span>{{ search_form}}</span>
+            <span><button type="submit" >Suivre</button></span>
         </form>
     </section>
     <section>
         <h2>Vos abonnements</h2>
         <form method="post">
             {% csrf_token %}
-            <ul>
-                {% for obj in followed %}
-                    <li>
-                        {{ obj.followed_user.username }}
-                        <button type="submit" name="unfollow" value="{{obj.id}}">Se désabonner</button>
-                    </li>
-                {% endfor %}
-            </ul>
+            {% for obj in followed %}
+            <div class="two-columns row {% cycle 'r1' 'r2' %}">
+                    <span>{{ obj.followed_user.username }}</span>
+                    <span><button type="submit" name="unfollow" value="{{obj.id}}">Se désabonner</button></span>
+            </div>
+            {% endfor %}
         </form>
     </section>
     <section>
         <h2>Vos abonnés</h2>
         <ul>
             {% for user in following_by %}
-                <li>{{ user.user.username }}</li>
+                <li class="{% cycle 'r1' 'r2' %}">{{ user.user.username }}</li>
             {% endfor %}
         </ul>
     </section>

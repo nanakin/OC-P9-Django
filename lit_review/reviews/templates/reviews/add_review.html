@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Ajouter une critique</h2>
-<form method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit" >Ajouter</button>
-</form>
+<section class="form">
+    <h2>Ajouter une critique</h2>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Ajouter</button>
+    </form>
+</section>
 {% endblock content %}

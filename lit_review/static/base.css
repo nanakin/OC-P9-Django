@@ -5,7 +5,6 @@ html {
 }
 
 body {
-    /*background: Gainsboro;*/
     margin: 0% 20%;
 }
 
@@ -29,7 +28,7 @@ header > div {
     grid-template-columns: 2fr 3fr;
     margin: 5px;
     align-items: center; /* center vertically */
-    text-align: end; /* center horizontally */
+    text-align: end;
 }
 
 header > div div {
@@ -52,7 +51,6 @@ header div img {
 }
 
 nav {
-    /* background: mintcream; */
     display: inline;
 }
 
@@ -83,13 +81,16 @@ button, main a {
   border: none;
   color: white;
   padding: 14px 28px;
-  /*border-radius: 3px;*/
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
   font-size: small;
   display: inline-block;
   font-family: 'Manrope', sans-serif;
+}
+
+input[type=file] {
+    display:none;
 }
 
 ul, li {
@@ -99,11 +100,7 @@ ul, li {
 }
 
 h2 {
-    /*padding-bottom: 10px;*/
-    /*border-bottom: 1px solid #660000;*/
-    /*margin-bottom: 25px;*/
     font-family: "Playfair Display", serif;
-    /*font-style: italic;*/
 }
 
 section {
@@ -112,24 +109,86 @@ section {
     border-bottom: 1px solid black;
 }
 
+input, textarea {
+    margin-left: 10px;
+}
+
+
+#id_rating > * {
+    display: inline;
+}
+
 .authentication {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
 }
 
-.follow {
+.form h3 {
+    font-family: "Playfair Display", serif;
 }
 
-.feed section:first-child > div {
-    text-align: center;
+.form .part {
+    border-left: 1px solid black;
+    padding-left: 20px;
+}
+
+.form label {
+    display:block;
+    margin: 10px;
+}
+
+
+#id_rating label {
+    display: inline;
+}
+
+.follow .search
+{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+}
+
+.follow .search span:last-child{
+    text-align: right;
+}
+
+.follow .two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center; /* center vertically */
+}
+
+.follow .two-columns span:first-child{
+    text-align: left;
+}
+
+.follow .two-columns span:last-child{
+    text-align: right;
+}
+
+.follow .row {
+   padding-left: 20px;
+}
+
+.follow li {
+    margin-left: 20px;
+    padding: 14px 20px;
+}
+
+.follow .r2 {
+    background: rgba(218, 218, 218, .4);
+}
+
+.follow form {
+    padding: 0px 20px;
 }
 
 .post {
     margin: 10px;
     padding: 20px;
     display: flow-root;
-    /*box-shadow: 0px 1px 7px 2px #c7c9d3;*/
     font-family: "EB Garamond", serif;
     border: 1px solid black;
 }
@@ -172,8 +231,19 @@ section {
 }
 
 .post .ref {
+    width: fit-content;
     border: 1px solid;
-    margin: 0px 20px;
+    margin: 10px 20px 0 20px; /* top | right | bottom | left */
+    text-align: center;
+    display: flow-root;
+    text-align: center; /* center horizontally */
+    padding: 10px;
+    background: rgba(245, 255, 250, .2);
+}
+
+.post .ref img {
+    width: 50px;
+    margin-right: 10px;
 }
 
 .post p {
@@ -186,9 +256,3 @@ section {
     text-align: right;
     clear: both;
 }
-
-/*.post a {
-    padding: 10px;
-    background: #cc3333;
-    color: white;
-}*/
