@@ -8,9 +8,11 @@ body {
     margin: 0% 20%;
 }
 
-a {
-    text-decoration: none;
-    color: black;
+
+@media screen and (max-width: 1222px) {
+    body {
+        margin: auto;
+    }
 }
 
 header {
@@ -50,6 +52,12 @@ header div img {
     margin: 0% 5%;
 }
 
+@media screen and (max-width: 768px) {
+    header img {
+        display: none;
+    }
+}
+
 nav {
     display: inline;
 }
@@ -57,14 +65,22 @@ nav {
 nav ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 nav li {
     display : inline;
+    white-space: nowrap;
 }
 
 nav a {
-    padding: 20px 20px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.selected {
+    text-decoration: underline;
 }
 
 nav a:visited, nav a:link, nav a:active {
