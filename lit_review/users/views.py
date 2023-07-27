@@ -18,7 +18,7 @@ def authenticate_page(request):
                 login(request, user)
                 return redirect(settings.LOGIN_REDIRECT_URL)
             else:
-                messages.error(request, "Identifiants incorrects");
+                messages.error(request, "Identifiants incorrects")
     return render(request, "users/authenticate.html", context={"form": form})
 
 
@@ -51,7 +51,6 @@ def follow_page(request):
     search_form = FollowForm()
     if request.method == "POST":
         if "unfollow" in request.POST:
-            print(f"unfollow {request.POST['unfollow']}")
             given_relation = request.POST['unfollow']
             if request.user.following.filter(id=given_relation).first():
                 UserFollows.objects.get(id=given_relation).delete()
@@ -66,7 +65,7 @@ def follow_page(request):
                     UserFollows(user=request.user, followed_user=given_user).save()
                     search_form = FollowForm()
                 else:
-                    messages.error(request, "Impossible de suivre cet utilisateur.");
+                    messages.error(request, "Impossible de suivre cet utilisateur.")
     return render(request, "users/follow.html",
                   context=
                   {

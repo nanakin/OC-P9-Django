@@ -1,14 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Modifier ou supprimer la critique</h2>
-<form method="post">
-    {{ edit_form.as_p }}
-    {% csrf_token %}
-    <button type="submit" >Sauvegarder</button>
-</form>
-<form method="post">
-    {{ delete_form.as_p }}
-    {% csrf_token %}
-    <button type="submit" >Supprimer</button>
-</form>
+<section class="form">
+    <h2>Modifier ou supprimer la critique en réponse à "{{ticket.title}}" de {{ticket.user}}</h2>
+    <label>Ticket :</label>
+    <div class="ref">
+            {% if ticket.image %}
+                <img src="{{ticket.image.url}}" alt="{{ticket.title}}">
+            {% endif %}
+            <strong>{{ticket.title}}</strong><br>
+            {{ticket.description}}
+    </div>
+    <form method="post">
+        {{ edit_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Sauvegarder</button>
+    </form>
+    <form method="post">
+        {{ delete_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Supprimer</button>
+    </form>
+</section>
 {% endblock content %}

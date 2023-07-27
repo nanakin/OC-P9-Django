@@ -101,7 +101,7 @@ def add_review_page(request, ticket_id):
                 review.ticket = ticket
                 review.save()
                 return redirect('feed')
-        return render(request, "reviews/add_review.html", context={"form": form})
+        return render(request, "reviews/add_review.html", context={"form": form, "ticket": ticket})
 
 
 @login_required()
@@ -111,6 +111,7 @@ def edit_review_page(request, review_id):
         return redirect("feed")
     edit_form = EditReviewForm(instance=review)
     delete_form = DeleteReviewForm(instance=review)
+    ticket = review.ticket
     if request.method == "POST":
         if "edit_ticket" in request.POST:
             edit_form = EditReviewForm(request.POST, instance=review)
@@ -122,7 +123,7 @@ def edit_review_page(request, review_id):
                 review.delete()
         return redirect('feed')
     return render(request, "reviews/edit_review.html",
-                  context={"edit_form": edit_form, "delete_form": delete_form})
+                  context={"edit_form": edit_form, "delete_form": delete_form, "ticket": ticket})
 
 
 @login_required()

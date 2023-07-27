@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="form">
-    <h2>Ajouter une critique</h2>
+    <h2>Ajouter une critique en réponse à "{{ticket.title}}" de {{ticket.user}}</h2>
+    <label>Ticket :</label>
+    <div class="ref">
+            {% if ticket.image %}
+                <img src="{{ticket.image.url}}" alt="{{ticket.title}}">
+            {% endif %}
+            <strong>{{ticket.title}}</strong><br>
+            {{ticket.description}}
+    </div>
     <form method="post">
         {{ form.as_p }}
         {% csrf_token %}
