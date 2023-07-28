@@ -5,7 +5,7 @@
     <label>Ticket :</label>
     <div class="ref">
             {% if ticket.image %}
-                <img src="{{ticket.image.url}}" alt="{{ticket.title}}">
+                <img src="{{ticket.image.url}}" alt="couverture de {{ticket.title}}">
             {% endif %}
             <strong>{{ticket.title}}</strong><br>
             {{ticket.description}}

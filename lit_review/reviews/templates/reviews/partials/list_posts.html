@@ -10,7 +10,7 @@
         <p>
             {{post.description}}
             {% if post.image %}
-                <img src="{{post.image.url}}" alt="{{post.title}}">
+                <img src="{{post.image.url}}" alt="couverture de {{post.title}}">
             {% endif %}
         </p>
         {% if post.user == request.user or post in answerable %}
@@ -34,7 +34,7 @@
         <h3>{{post.headline}}</h3><span class="stars">{{post.rating|stars}}</span>
         <div class="ref">
             {% if post.ticket.image %}
-                <img src="{{post.ticket.image.url}}" alt="{{post.ticket.title}}">
+                <img src="{{post.ticket.image.url}}" alt="couverture de {{post.ticket.title}}">
             {% endif %}
             {{post.ticket.title}}
         </div>
