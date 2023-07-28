@@ -116,6 +116,10 @@ h2 {
     font-family: "Playfair Display", serif;
 }
 
+textarea {
+    width: 100%;
+}
+
 section {
     padding: 10px;
     padding-bottom: 40px;
