@@ -37,8 +37,11 @@ The python code:
 - is [PEP8](https://peps.python.org/pep-0008/) compliant ([flake8](https://pypi.org/project/flake8/) valid),
 - is [Black](https://pypi.org/project/black/) formatted.
 
-### Screenshot
-<img src="" alt="LITReview app screenshot" width="640"/>
+### Screenshots
+
+<img src="https://github.com/nanakin/OC-P9-Django/assets/14202917/56adafc0-5d23-4321-9685-ceaf1e24f860" alt="main" width="700"/>
+<img src="https://github.com/nanakin/OC-P9-Django/assets/14202917/a0f45511-f7f7-4c05-be99-30f5e5255e27" alt="edit-review" width="700"/>
+<img src="https://github.com/nanakin/OC-P9-Django/assets/14202917/6eb5dcfd-04aa-44e2-bc5b-9f7ba3fbd1c0" alt="abonnements" width="700"/>
 
 ## Technology
 
