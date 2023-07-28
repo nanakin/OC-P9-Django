@@ -1,4 +1,4 @@
-from django.forms import ModelForm, BooleanField, HiddenInput, ChoiceField, RadioSelect
+from django.forms import ModelForm, BooleanField, HiddenInput, RadioSelect
 from .models import Ticket, Review
 
 

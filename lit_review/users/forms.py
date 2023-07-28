@@ -1,7 +1,6 @@
-from django.forms import Form, CharField, PasswordInput, ModelForm
+from django.forms import Form, CharField, PasswordInput
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
-from .models import UserFollows
 
 
 class LoginForm(Form):

@@ -66,10 +66,7 @@ def follow_page(request):
                     search_form = FollowForm()
                 else:
                     messages.error(request, "Impossible de suivre cet utilisateur.")
-    return render(request, "users/follow.html",
-                  context=
-                  {
-                      "search_form": search_form,
-                      "followed": get_followed_users(request.user),
-                      "following_by": get_following_by_users(request.user)
-                  })
+    return render(request, "users/follow.html", context={"search_form": search_form,
+                                                         "followed": get_followed_users(request.user),
+                                                         "following_by": get_following_by_users(request.user)
+                                                         })
