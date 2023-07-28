@@ -7,11 +7,12 @@ to evolve that much once finished. This project is not open to contribution.
 The following need is fictive.
 
 ## About the project
-![logo](https://github.com/nanakin/OC-P9-Django/assets/14202917/11a13b54-2d38-4a2d-a227-6e3db82b833b)
+
+<img src="https://github.com/nanakin/OC-P9-Django/assets/14202917/d79cb60d-c528-47cf-b434-de00d3fb0234" alt="LITRevu logo" width=500>
 
 ### Project context
-I joined a young start-up named LITRevu (referring to literature reviews) as Python Lead Developer. 
-The start-up goal is to develop (and commercialize) web based product allowing a community of readers and writers to 
+I recently joined a young start-up named LITRevu (referring to literature reviews) as Python Lead Developer. 
+The start-up goal is to develop (and commercialize) a web based product allowing a community of readers and writers to 
 **publish and request reviews** of books (or articles).
 
 ### About the website functionalities
@@ -23,7 +24,7 @@ The web application allows to:
 - signup (+ login and logout).
 
 ### About the application technology, design and compliance
-The application : 
+The application: 
 - is using [Django](https://www.djangoproject.com/) (open-source python-based web framework that follows the Model–Template–Views architecture)
 - is not using Javascript,
 - is not using CSS framework,
@@ -31,7 +32,7 @@ The application :
 - is compatible with small screens,
 - is following [WCAG](https://wcag.com/) (Web Content Accessibility Guidelines)
 
-The python code :
+The python code:
 - is following Django's best practices,
 - is PEP8 compliant,
 - is Black formatted.
@@ -40,7 +41,8 @@ The python code :
 <img src="" alt="LITReview app screenshot" width="640"/>
 
 ## Technology
-<img src="https://github.com/nanakin/OC-P9-Django/assets/14202917/debe478c-43f1-4a7e-85bf-fa0a01cbaf89" alt="python-django" width="40" height="40"/>
+
+<img src="https://github.com/nanakin/OC-P9-Django/assets/14202917/6552e943-82a4-4fda-b8c9-9ad0775adcf5" alt="python-django" width="150"/>
 
 This application was tested with python `3.11` version, with pip `23.2`, and django `4.2`.
 The development environment was macOS `13.4` and firefox `115`.
