@@ -1,7 +1,7 @@
 html {
     font-family: 'Roboto', sans-serif;
     color: #1c1f33;
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/paper_fibers.png")
+    background: url("/static/images/paper_fibers.png")
 }
 
 body {

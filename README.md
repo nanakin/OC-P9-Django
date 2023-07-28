@@ -28,14 +28,14 @@ The application:
 - is using [Django](https://www.djangoproject.com/) (open-source python-based web framework that follows the Model–Template–Views architecture)
 - is not using Javascript,
 - is not using CSS framework,
-- is valid W3C HTML and W3C CSS,
+- is valid [W3C HTML](https://validator.w3.org/) and [W3C CSS](https://jigsaw.w3.org/css-validator/),
 - is compatible with small screens,
 - is following [WCAG](https://wcag.com/) (Web Content Accessibility Guidelines)
 
 The python code:
 - is following Django's best practices,
-- is PEP8 compliant,
-- is Black formatted.
+- is [PEP8](https://peps.python.org/pep-0008/) compliant ([flake8](https://pypi.org/project/flake8/) valid),
+- is [Black](https://pypi.org/project/black/) formatted.
 
 ### Screenshot
 <img src="" alt="LITReview app screenshot" width="640"/>

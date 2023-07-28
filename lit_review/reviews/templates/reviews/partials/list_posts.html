@@ -8,10 +8,10 @@
         </div>
         <h3>{{post.title}}</h3>
         <p>
-            {{post.description}}
             {% if post.image %}
                 <img src="{{post.image.url}}" alt="couverture de {{post.title}}">
             {% endif %}
+            {{post.description}}
         </p>
         {% if post.user == request.user or post in answerable %}
             <div class="footer">
