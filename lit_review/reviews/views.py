@@ -11,9 +11,7 @@ def get_followed_users(user):
 
 
 def get_users_viewable_tickets(user):
-    return Ticket.objects.filter(
-        Q(user=user) |
-        Q(user__in=get_followed_users(user)))
+    return Ticket.objects.filter(Q(user=user) | Q(user__in=get_followed_users(user)))
 
 
 def get_users_tickets(user):
@@ -22,9 +20,8 @@ def get_users_tickets(user):
 
 def get_users_viewable_reviews(user):
     return Review.objects.filter(
-        Q(user=user) |
-        Q(user__in=get_followed_users(user)) |
-        Q(ticket__in=get_users_tickets(user)))
+        Q(user=user) | Q(user__in=get_followed_users(user)) | Q(ticket__in=get_users_tickets(user))
+    )
 
 
 def get_users_reviews(user):
@@ -82,8 +79,7 @@ def edit_ticket_page(request, ticket_id):
             if delete_form.is_valid():
                 ticket.delete()
         return redirect('feed')
-    return render(request, "reviews/edit_ticket.html",
-                  context={"edit_form": edit_form, "delete_form": delete_form})
+    return render(request, "reviews/edit_ticket.html", context={"edit_form": edit_form, "delete_form": delete_form})
 
 
 @login_required()
@@ -122,8 +118,11 @@ def edit_review_page(request, review_id):
             if delete_form.is_valid():
                 review.delete()
         return redirect('feed')
-    return render(request, "reviews/edit_review.html",
-                  context={"edit_form": edit_form, "delete_form": delete_form, "ticket": ticket})
+    return render(
+        request,
+        "reviews/edit_review.html",
+        context={"edit_form": edit_form, "delete_form": delete_form, "ticket": ticket},
+    )
 
 
 @login_required()
@@ -142,5 +141,6 @@ def add_ticket_and_review_page(request):
             review.ticket = ticket
             review.save()
             return redirect('feed')
-    return render(request, "reviews/add_ticket_and_review.html",
-                  context={"ticket_form": ticket_form, "review_form": review_form})
+    return render(
+        request, "reviews/add_ticket_and_review.html", context={"ticket_form": ticket_form, "review_form": review_form}
+    )

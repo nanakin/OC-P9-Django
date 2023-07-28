@@ -12,8 +12,7 @@ def authenticate_page(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data["username"],
-                                password=form.cleaned_data["password"])
+            user = authenticate(username=form.cleaned_data["username"], password=form.cleaned_data["password"])
             if user is not None:
                 login(request, user)
                 return redirect(settings.LOGIN_REDIRECT_URL)
@@ -59,14 +58,21 @@ def follow_page(request):
             if search_form.is_valid():
                 given_username = search_form.cleaned_data["username"]
                 given_user = User.objects.filter(username=given_username).first()
-                if (given_user != request.user and
-                        given_user and
-                        len(request.user.following.filter(followed_user=given_user)) == 0):
+                if (
+                    given_user != request.user
+                    and given_user
+                    and len(request.user.following.filter(followed_user=given_user)) == 0
+                ):
                     UserFollows(user=request.user, followed_user=given_user).save()
                     search_form = FollowForm()
                 else:
                     messages.error(request, "Impossible de suivre cet utilisateur.")
-    return render(request, "users/follow.html", context={"search_form": search_form,
-                                                         "followed": get_followed_users(request.user),
-                                                         "following_by": get_following_by_users(request.user)
-                                                         })
+    return render(
+        request,
+        "users/follow.html",
+        context={
+            "search_form": search_form,
+            "followed": get_followed_users(request.user),
+            "following_by": get_following_by_users(request.user),
+        },
+    )
