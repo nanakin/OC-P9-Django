@@ -77,13 +77,13 @@ The development environment was macOS `13.4` and firefox `115`.
    ```sh
    cd lit_review
    ```
-6. Create the database:
+6. Create migration files (corresponding to database structure):
    ```sh
    python3 manage.py makemigrations
    ```
 7. Launch the server:
    ```sh
-   python3 manage.py runser
+   python3 manage.py runserver
    ```
 8. Open http://127.0.0.1:8000/ on your web browser.
 
